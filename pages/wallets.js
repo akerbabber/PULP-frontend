@@ -79,41 +79,64 @@ export default function wallets() {
       <div className='flex justify-around'>
       <div className='rounded-[150px]    bg-white w-[78%] h-[28vw] m-auto p-16 '>
           <div className='text-[1.4vw] font-ProtoMono-Light mb-[2vw] text-gray-900 m-auto w-full'>Finally, sign in with your Ethereum Wallet to save these changes.</div>
+              <div id="wallets-container">
+              <ul role="list" class="p-6 divide-y divide-slate-200 w-[94%] ml-10">
+                <li class=" first:pt-0 last:pb-0">
+                  <div class="ml-3 flex border-2 border-b-0 p-3 border-gray-600 hover:bg-orange-300 ">
+                  <div className='bg-white h-[3vw] mb-[0.3vw] w-[11%] text-center' style={{
+                      background: 'url(/static/metamask.png) center',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition:'center'
+                    }}>
+                  </div>
+                    <div className='text-[1.6vw] font-medium text-slate-900 flex self-center'>Meta Mask</div>
+                    <div className='bg-white h-[3vw] mb-[0.3vw] ml-[60%] w-[11%] text-center' style={{
+                      background: 'url(/static/right.png) center',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition:'center'
+                    }}>
+                  </div>
+                  </div>
+                </li>
+                <li class=" first:pt-0 last:pb-0">
+                  <div class="ml-3 flex border-l-2 border-r-2 p-3 border-gray-600 hover:bg-orange-300 ">
+                  <div className='bg-white h-[3vw] mb-[0.3vw] w-[11%] text-center' style={{
+                      background: 'url(/static/walletconnect.png) center',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition:'center'
+                    }}>
+                  </div>
+                    <div className='text-[1.6vw] font-medium text-slate-900 flex self-center'>Wallet Connect</div>
+                    <div className='bg-white h-[3vw] mb-[0.3vw] ml-[52%] w-[11%] text-center' style={{
+                      background: 'url(/static/right.png) center',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition:'center'
+                    }}>
+                  </div>
+                  </div>
+                </li>
+                <li class=" first:pt-0 last:pb-0">
+                  <div class="ml-3 flex border-l-2 border-r-2 border-b-2 p-3 border-gray-600 hover:bg-orange-300 ">
+                  <div className='bg-white h-[3vw] mb-[0.3vw] w-[11%] text-center' style={{
+                      background: 'url(/static/coinbase.png) center',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition:'center'
+                    }}>
+                  </div>
+                    <div className='text-[1.6vw] font-medium text-slate-900 flex self-center'>CoinBase wallet</div>
+                    <div className='bg-white h-[3vw] mb-[0.3vw] ml-[50%] w-[11%] text-center' style={{
+                      background: 'url(/static/right.png) center',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition:'center'
+                    }}>
+                  </div>
+                  </div>
+                </li>
 
-          <div className='grid grid-cols-2 pl-10 pr-10 mb-[0.3vw]' id='barcode'>
-                <div>
-                  <div className='text-[1.2vw] font-ProtoMono-Light  text-gray-900 '>AGE</div>
-                  <div className='bg-white h-[8vw] w-[8vw] m-auto' style={{
-                    background: 'url(/static/qr-age.png) center',
-                    backgroundSize: 'cover',
-                    backgroundRepeat: 'no-repeat',
-                  }}>
+            </ul>
               </div>
-              <div className='bg-white h-[2vw] w-[2vw] m-auto' style={{
-                    background: 'url(/static/checked.png) center',
-                    backgroundSize: 'cover',
-                    backgroundRepeat: 'no-repeat',
-                  }}>
-              </div>
-                </div>
-                <div>
-                  <div className='text-[1.2vw] font-ProtoMono-Light  text-gray-900 '>DAO Contributor</div>
-                  <div className='bg-white h-[8vw] w-[8vw] m-auto' style={{
-                    background: 'url(/static/qr-age.png) center',
-                    backgroundSize: 'cover',
-                    backgroundRepeat: 'no-repeat',
-                  }}>
-              </div>
-              <div className='bg-white h-[2vw] w-[2vw] m-auto' style={{
-                    background: 'url(/static/checked.png) center',
-                    backgroundSize: 'cover',
-                    backgroundRepeat: 'no-repeat',
-                  }}>
-              </div>
-                </div>
-          </div>
-          <div className='text-[1.4vw] font-ProtoMono-Light text-orange-600 mt-10 '>Congratulations! You have a Good Reputation.</div>
-          <button className='rounded-lg text-[1.2vw] p-4 bg-white border-2 border-green-900 mt-[1vw] text-gray-900 hover:bg-green-900 hover:text-white'>Continue</button>
+         
+         <button className='rounded-lg text-[1.2vw] p-4 bg-white border-2 border-green-900 mt-[1vw] text-gray-900 hover:bg-green-900 hover:text-white'>Continue</button>
           
         </div>
       </div>
