@@ -18,7 +18,7 @@ export default function Wallets() {
     contractInterface: ABI,
     functionName: 'initiateBorrower',
   })
-  const { config: newConfig } = usePrepareSendTransaction({
+  const { config: newConfig } = usePrepareContractWrite({
     addressOrName: '0x7637f41e06Fe036dA6EC297F23dd23Df9CBef2Dd',
     contractInterface: ABI,
     functionName: 'initiateLender',
@@ -30,7 +30,7 @@ export default function Wallets() {
     }
   })
   const { write } = useContractWrite(config)
-  const {write: lenderWrite} = useSendTransaction(newConfig);
+  const {write: lenderWrite} = useContractWrite(newConfig);
 
   const router = useRouter();
 
