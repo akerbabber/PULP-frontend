@@ -26,7 +26,7 @@ export default function Wallets() {
       [1,2], 0.01, 15
     ],
     overrides: {
-      value: ethers.utils.parseEther('0.01')
+      value: ethers.utils.parseUnits('0.01')
     }
   })
   const { write } = useContractWrite(config)
@@ -34,14 +34,12 @@ export default function Wallets() {
 
   const router = useRouter();
 
-  useEffect(()=>{
-    if(status === "success"){
-      lenderWrite?.()
-      write?.()
-    }
-  },[status, write, lenderWrite])
-
-
+  // useEffect(()=>{
+  //   if(status === "success"){
+  //     lenderWrite?.()
+  //     write?.()
+  //   }
+  // },[status, write, lenderWrite])
 
   const images = {
     "MetaMask": {background: 'url(/static/metamask.png) center',
