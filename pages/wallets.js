@@ -1,14 +1,52 @@
 import Head from 'next/head'
 import Header from './header'
 import { useRouter } from 'next/router'
+import { useConnect, usePrepareContractWrite, useContractWrite, useAccount } from 'wagmi'
+import { useEffect } from 'react'
+import ABI from "../ABI.json" 
 
 export default function Wallets() {
+  const { connect, connectors, error, isLoading, pendingConnector, status } =
+  useConnect()
+  const {address} = useAccount()
+
+  const { config } = usePrepareContractWrite({
+    addressOrName: '0x7637f41e06Fe036dA6EC297F23dd23Df9CBef2Dd',
+    contractInterface: ABI,
+    functionName: 'initiateBorrower',
+    // args: [address],
+  })
+  const { write } = useContractWrite(config)
 
   const router = useRouter();
-  
+
+  useEffect(()=>{
+    if(status === "success"){
+      write?.()
+    }
+  },[status, write])
+
+
+
+  const images = {
+    "MetaMask": {background: 'url(/static/metamask.png) center',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition:'center'},
+    "WalletConnect": {
+      
+        background: 'url(/static/walletconnect.png) center',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition:'center'
+      
+    },
+    "Coinbase Wallet": {background: 'url(/static/coinbase.png) center',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition:'center'}
+  }
 
   return (
     <div>
+
       <Head>
         <title>PULP / Borrowers Platform</title>
       </Head>
@@ -70,15 +108,24 @@ export default function Wallets() {
           <div className='text-[1.4vw] font-ProtoMono-Light mb-[2vw] text-gray-900 m-auto w-full'>Finally, sign in with your Ethereum Wallet to save these changes.</div>
               <div id="wallets-container">
               <ul role="list" class="p-6 divide-y divide-slate-200 w-[94%] ml-10">
-                <li class=" first:pt-0 last:pb-0">
+
+              {connectors.filter(connector=>connector.name !== "Injected").map((connector) => (
+<>
+<li  class=" first:pt-0 last:pb-0">
                   <div class="ml-3 flex border-2 border-b-0 p-3 border-gray-600 hover:bg-yellow-100 ">
-                  <div className='bg-white h-[3vw] mb-[0.3vw] w-[11%] text-center' style={{
-                      background: 'url(/static/metamask.png) center',
-                      backgroundRepeat: 'no-repeat',
-                      backgroundPosition:'center'
-                    }}>
+                  <div className='bg-white h-[3vw] mb-[0.3vw] w-[11%] text-center' style={images[connector.name]}>
                   </div>
-                    <div className='text-[1.6vw] font-medium text-slate-900 flex self-center'>Meta Mask</div>
+                       <button className='text-[1.6vw] font-medium text-slate-900 flex self-center'
+          disabled={!connector.ready}
+          key={connector.id}
+          onClick={() => connect({ connector })}
+        >
+          {connector.name}
+          {!connector.ready && ' (unsupported)'}
+          {isLoading &&
+            connector.id === pendingConnector?.id &&
+            ' (connecting)'}
+        </button>
                     <div className='bg-white h-[3vw] mb-[0.3vw] ml-[60%] w-[11%] text-center' style={{
                       background: 'url(/static/right.png) center',
                       backgroundRepeat: 'no-repeat',
@@ -87,40 +134,17 @@ export default function Wallets() {
                   </div>
                   </div>
                 </li>
-                <li class=" first:pt-0 last:pb-0">
-                  <div class="ml-3 flex border-l-2 border-r-2 p-3 border-gray-600 hover:bg-yellow-100 ">
-                  <div className='bg-white h-[3vw] mb-[0.3vw] w-[11%] text-center' style={{
-                      background: 'url(/static/walletconnect.png) center',
-                      backgroundRepeat: 'no-repeat',
-                      backgroundPosition:'center'
-                    }}>
-                  </div>
-                    <div className='text-[1.6vw] font-medium text-slate-900 flex self-center'>Wallet Connect</div>
-                    <div className='bg-white h-[3vw] mb-[0.3vw] ml-[52%] w-[11%] text-center' style={{
-                      background: 'url(/static/right.png) center',
-                      backgroundRepeat: 'no-repeat',
-                      backgroundPosition:'center'
-                    }}>
-                  </div>
-                  </div>
-                </li>
-                <li class=" first:pt-0 last:pb-0">
-                  <div class="ml-3 flex border-l-2 border-r-2 border-b-2 p-3 border-gray-600 hover:bg-yellow-100 ">
-                  <div className='bg-white h-[3vw] mb-[0.3vw] w-[11%] text-center' style={{
-                      background: 'url(/static/coinbase.png) center',
-                      backgroundRepeat: 'no-repeat',
-                      backgroundPosition:'center'
-                    }}>
-                  </div>
-                    <div className='text-[1.6vw] font-medium text-slate-900 flex self-center'>CoinBase wallet</div>
-                    <div className='bg-white h-[3vw] mb-[0.3vw] ml-[50%] w-[11%] text-center' style={{
-                      background: 'url(/static/right.png) center',
-                      backgroundRepeat: 'no-repeat',
-                      backgroundPosition:'center'
-                    }}>
-                  </div>
-                  </div>
-                </li>
+
+</>
+
+
+   
+      ))}
+                
+                
+              
+
+
 
             </ul>
               </div>

@@ -1,0 +1,1356 @@
+[
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "lenderAddress",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "borrowerAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "lenderAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "borrowerAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "currentRepaymentAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "principalBorrowAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "interestRate",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "repayByTimestamp",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "createdDate",
+              "type": "uint256"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint64[]",
+                  "name": "requirementIds",
+                  "type": "uint64[]"
+                },
+                {
+                  "internalType": "address",
+                  "name": "lender",
+                  "type": "address"
+                }
+              ],
+              "internalType": "struct PulpLibrary.Lender",
+              "name": "lenderData",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "bool",
+                  "name": "requirementsMet",
+                  "type": "bool"
+                },
+                {
+                  "internalType": "address",
+                  "name": "borrower",
+                  "type": "address"
+                }
+              ],
+              "internalType": "struct PulpLibrary.Borrower",
+              "name": "borrowerData",
+              "type": "tuple"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct PulpLibrary.Agreement",
+          "name": "loanAgreement",
+          "type": "tuple"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "Borrow",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "lenderAddress",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "receiverAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "Deposit",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "lenderAddress",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "borrowerAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "lenderAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "borrowerAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "currentRepaymentAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "principalBorrowAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "interestRate",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "repayByTimestamp",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "createdDate",
+              "type": "uint256"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint64[]",
+                  "name": "requirementIds",
+                  "type": "uint64[]"
+                },
+                {
+                  "internalType": "address",
+                  "name": "lender",
+                  "type": "address"
+                }
+              ],
+              "internalType": "struct PulpLibrary.Lender",
+              "name": "lenderData",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "bool",
+                  "name": "requirementsMet",
+                  "type": "bool"
+                },
+                {
+                  "internalType": "address",
+                  "name": "borrower",
+                  "type": "address"
+                }
+              ],
+              "internalType": "struct PulpLibrary.Borrower",
+              "name": "borrowerData",
+              "type": "tuple"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct PulpLibrary.Agreement",
+          "name": "loanAgreement",
+          "type": "tuple"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "Repay",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "AGE_CHECK_ID",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "BANKLESSDAO_PARTICIPANT_CHECK_ID",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "CREDIT_SCORE_CHECK_ID",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "DEFAULT_EXPIRATION_TIMESPAN",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "DEFAULT_INTEREST_RATE",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "GPA_CHECK_ID",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "INCOME_CHECK_ID",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "MAX_LOAN_AMOUNT",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "SHEFI_PARTICIPANT_CHECK_ID",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint64[]",
+              "name": "requirementIds",
+              "type": "uint64[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "loanOfferAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "interestRate",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "lender",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct PulpLibrary.Offer",
+          "name": "_loanOffer",
+          "type": "tuple"
+        }
+      ],
+      "name": "addLoanOffer",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "addressToId",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "borrowerAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "lenderAddress",
+          "type": "address"
+        },
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "lenderAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "borrowerAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "currentRepaymentAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "principalBorrowAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "interestRate",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "repayByTimestamp",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "createdDate",
+              "type": "uint256"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint64[]",
+                  "name": "requirementIds",
+                  "type": "uint64[]"
+                },
+                {
+                  "internalType": "address",
+                  "name": "lender",
+                  "type": "address"
+                }
+              ],
+              "internalType": "struct PulpLibrary.Lender",
+              "name": "lenderData",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "bool",
+                  "name": "requirementsMet",
+                  "type": "bool"
+                },
+                {
+                  "internalType": "address",
+                  "name": "borrower",
+                  "type": "address"
+                }
+              ],
+              "internalType": "struct PulpLibrary.Borrower",
+              "name": "borrowerData",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct PulpLibrary.Agreement",
+          "name": "loanAgreement",
+          "type": "tuple"
+        }
+      ],
+      "name": "borrow",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint64[]",
+              "name": "requirementIds",
+              "type": "uint64[]"
+            },
+            {
+              "internalType": "address",
+              "name": "lender",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct PulpLibrary.Lender",
+          "name": "lender",
+          "type": "tuple"
+        },
+        {
+          "components": [
+            {
+              "internalType": "bool",
+              "name": "requirementsMet",
+              "type": "bool"
+            },
+            {
+              "internalType": "address",
+              "name": "borrower",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct PulpLibrary.Borrower",
+          "name": "borrower",
+          "type": "tuple"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint64[]",
+              "name": "requirementIds",
+              "type": "uint64[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "loanOfferAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "interestRate",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "lender",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct PulpLibrary.Offer",
+          "name": "lenderOffer",
+          "type": "tuple"
+        }
+      ],
+      "name": "createLoanAgreement",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "lenderAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "borrowerAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "currentRepaymentAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "principalBorrowAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "interestRate",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "repayByTimestamp",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "createdDate",
+              "type": "uint256"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint64[]",
+                  "name": "requirementIds",
+                  "type": "uint64[]"
+                },
+                {
+                  "internalType": "address",
+                  "name": "lender",
+                  "type": "address"
+                }
+              ],
+              "internalType": "struct PulpLibrary.Lender",
+              "name": "lenderData",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "bool",
+                  "name": "requirementsMet",
+                  "type": "bool"
+                },
+                {
+                  "internalType": "address",
+                  "name": "borrower",
+                  "type": "address"
+                }
+              ],
+              "internalType": "struct PulpLibrary.Borrower",
+              "name": "borrowerData",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct PulpLibrary.Agreement",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_lenderAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "deposit",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "borrowerAddress",
+          "type": "address"
+        }
+      ],
+      "name": "getLoanAgreement",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "lenderAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "borrowerAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "currentRepaymentAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "principalBorrowAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "interestRate",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "repayByTimestamp",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "createdDate",
+              "type": "uint256"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint64[]",
+                  "name": "requirementIds",
+                  "type": "uint64[]"
+                },
+                {
+                  "internalType": "address",
+                  "name": "lender",
+                  "type": "address"
+                }
+              ],
+              "internalType": "struct PulpLibrary.Lender",
+              "name": "lenderData",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "bool",
+                  "name": "requirementsMet",
+                  "type": "bool"
+                },
+                {
+                  "internalType": "address",
+                  "name": "borrower",
+                  "type": "address"
+                }
+              ],
+              "internalType": "struct PulpLibrary.Borrower",
+              "name": "borrowerData",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct PulpLibrary.Agreement",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getLoanOffers",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint64[]",
+              "name": "requirementIds",
+              "type": "uint64[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "loanOfferAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "interestRate",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "lender",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct PulpLibrary.Offer[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getSupportedRequests",
+      "outputs": [
+        {
+          "internalType": "uint64[]",
+          "name": "arr",
+          "type": "uint64[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "requestId",
+          "type": "uint64"
+        }
+      ],
+      "name": "getZKPRequest",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "schema",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "slotIndex",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "operator",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "value",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "string",
+              "name": "circuitId",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct ICircuitValidator.CircuitQuery",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "idToAddress",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "initiateBorrower",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64[]",
+          "name": "_requirementIds",
+          "type": "uint64[]"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_loanOfferAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_interestRate",
+          "type": "uint256"
+        }
+      ],
+      "name": "initiateLender",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "loanOffer",
+      "outputs": [
+        {
+          "internalType": "contract LoanOffer",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "loanOffers",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "loanOfferAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "interestRate",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "lender",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "name": "proofs",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "lenderAddress",
+          "type": "address"
+        }
+      ],
+      "name": "removeLoanAgreement",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "removeLoanOffer",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "borrowerAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "lenderAddress",
+          "type": "address"
+        },
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "lenderAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "borrowerAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "currentRepaymentAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "principalBorrowAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "interestRate",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "repayByTimestamp",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "createdDate",
+              "type": "uint256"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint64[]",
+                  "name": "requirementIds",
+                  "type": "uint64[]"
+                },
+                {
+                  "internalType": "address",
+                  "name": "lender",
+                  "type": "address"
+                }
+              ],
+              "internalType": "struct PulpLibrary.Lender",
+              "name": "lenderData",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "bool",
+                  "name": "requirementsMet",
+                  "type": "bool"
+                },
+                {
+                  "internalType": "address",
+                  "name": "borrower",
+                  "type": "address"
+                }
+              ],
+              "internalType": "struct PulpLibrary.Borrower",
+              "name": "borrowerData",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct PulpLibrary.Agreement",
+          "name": "loanAgreement",
+          "type": "tuple"
+        }
+      ],
+      "name": "repay",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "name": "requestQueries",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "schema",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "slotIndex",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "operator",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "circuitId",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "name": "requestValidators",
+      "outputs": [
+        {
+          "internalType": "contract ICircuitValidator",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "requestId",
+          "type": "uint64"
+        },
+        {
+          "internalType": "contract ICircuitValidator",
+          "name": "validator",
+          "type": "address"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "schema",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "slotIndex",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "operator",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "value",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "string",
+              "name": "circuitId",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct ICircuitValidator.CircuitQuery",
+          "name": "query",
+          "type": "tuple"
+        }
+      ],
+      "name": "setZKPRequest",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "borrowerAddress",
+          "type": "address"
+        },
+        {
+          "components": [
+            {
+              "internalType": "bool",
+              "name": "requirementsMet",
+              "type": "bool"
+            },
+            {
+              "internalType": "address",
+              "name": "borrower",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct PulpLibrary.Borrower",
+          "name": "borrowerData",
+          "type": "tuple"
+        }
+      ],
+      "name": "startMatch",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "requestId",
+          "type": "uint64"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "inputs",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256[2]",
+          "name": "a",
+          "type": "uint256[2]"
+        },
+        {
+          "internalType": "uint256[2][2]",
+          "name": "b",
+          "type": "uint256[2][2]"
+        },
+        {
+          "internalType": "uint256[2]",
+          "name": "c",
+          "type": "uint256[2]"
+        }
+      ],
+      "name": "submitZKPResponse",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "supportedRequests",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "updateLoanAgreement",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    }
+  ]
