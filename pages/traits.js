@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Header from './header'
 
 
-export default function Brw2() {
+export default function Traits() {
   return (
     <div>
       <Head>

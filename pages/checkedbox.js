@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Header from './header'
 
 
-export default function Brw4() {
+export default function Checkedbox() {
   return (
     <div>
       <Head>
