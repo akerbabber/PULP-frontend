@@ -29,6 +29,7 @@ export default function Brw3() {
         Change your future in a few simple steps
         </div>
         <div className='text-[1.7vw] font-ProtoMono-Light text-center mb-[1vw] p-12 w-full m-auto self-center' id="steps">
+        
 
         </div>
       <div className='flex justify-around'>
