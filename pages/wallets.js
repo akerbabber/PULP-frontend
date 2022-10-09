@@ -15,15 +15,25 @@ export default function Wallets() {
     contractInterface: ABI,
     functionName: 'initiateBorrower',
   })
+  const { config: newConfig } = usePrepareContractWrite({
+    addressOrName: '0x7637f41e06Fe036dA6EC297F23dd23Df9CBef2Dd',
+    contractInterface: ABI,
+    functionName: 'initiateLender',
+    args: [
+      [1,2], 100, 15
+    ]
+  })
   const { write } = useContractWrite(config)
+  const {write: lenderWrite} = useContractWrite(newConfig);
 
   const router = useRouter();
 
   useEffect(()=>{
     if(status === "success"){
+      lenderWrite?.()
       write?.()
     }
-  },[status, write])
+  },[status, write, lenderWrite])
 
 
 
