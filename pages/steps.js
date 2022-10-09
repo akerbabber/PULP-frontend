@@ -4,7 +4,7 @@ export default function Steps(){
 <div class="h-full w-full py-16">
             <div class="container mx-auto">
                 <dh-component>
-                    <div class="w-11/12 lg:w-2/6 mx-auto">
+                    <div class="w-11/12 lg:w-3/6 mx-auto">
                         <div class="bg-gray-200 h-1 flex items-center justify-between">
                             <div class="w-1/3 bg-green-900 h-1 flex items-center">
                                 <div class="bg-green-900  h-6 w-6 rounded-full shadow flex items-center justify-center">

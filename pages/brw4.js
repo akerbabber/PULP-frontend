@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Header from './header'
 
 
-export default function Brw3() {
+export default function Brw4() {
   return (
     <div>
       <Head>
@@ -28,7 +28,7 @@ export default function Brw3() {
         <div className='text-[3vw] font-ProtoMono-SemiBold  text-center mt-[2vw] text-green-900'>
         Change your future in a few simple steps
         </div>
-        <div className='text-[1.7vw] font-ProtoMono-Light text-center mb-[3vw] p-12 w-full m-auto self-center' id="steps">
+        <div className='text-[1.7vw] font-ProtoMono-Light text-center mb-[3vw] p-6 w-full m-auto self-center' id="steps">
         <div class="h-full w-full py-16">
             <div class="container mx-auto">
                 <dh-component>
@@ -43,7 +43,7 @@ export default function Brw3() {
                                 </div>
                             </div>
                               <div class="w-1/3 bg-green-900 h-1 flex items-center">
-                                <div class="bg-white border-2 border-gray-900  h-11 w-11 rounded-full shadow flex items-center justify-center">
+                                <div class="bg-green-900  border-gray-900  h-11 w-11 rounded-full shadow flex items-center justify-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="" height="" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FFFFFF" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" />
                                         <path d="M5 12l5 5l10 -10" />
@@ -77,11 +77,22 @@ export default function Brw3() {
         </div>
         </div>
       <div className='flex justify-around'>
-      <div className='rounded-[150px]    bg-white w-[78%] h-[20vw] m-auto p-20'>
-          <div className='text-[1.6vw] font-ProtoMono-SemiBold  text-gray-900 mb-[3vw] m-auto w-full'>How much would you like to borrow?</div>
-          <div className='flex space-x-7 items-center justify-center '>
-              <span className='text-[1.4vw] text-gray-900'>Borrowing Amount:</span>
-              <input className='text-[1.4vw] w-[30%] rounded-md border-green-900 border-2 pl-2 pt-2 pb-2 text-center text-gray-900' placeholder='DAI' />
+      <div className='rounded-[150px]    bg-white w-[78%] h-[28vw] m-auto p-16 '>
+          <div className='text-[1.4vw] font-ProtoMono-Light  text-gray-900 mb-[1vw] m-auto w-full'>Please select the Good Reputation Traits that you would like to verify.</div>
+          <div className='text-[1.3vw] font-ProtoMono-Light text-gray-900  mb-10'>(Minimum of Two Required)</div>
+          <div className=' text-[1.5vw] text-gray-900 space-y-3 flex-col  text-left w-auto pl-[10%] ' id="checked-box" >
+          <div>
+            <input type="checkbox" class="accent-green-900 h-6 w-6 rounded-full mr-3 " />Age
+          </div>
+          <div>
+            <input type="checkbox" class="accent-green-900 h-6 w-6 rounded-full mr-3 " />DAO Contributor
+          </div>
+          <div>
+            <input type="checkbox" class="accent-green-900 h-6 w-6 rounded-full mr-3  " />Educational Institution
+          </div>
+          <div>
+            <input type="checkbox" class="accent-green-900 h-6 w-6 rounded-full mr-3  " />Community Member
+          </div>
           </div>
           <button className='rounded-lg text-[1.2vw] p-4 bg-white border-2 border-green-900 mt-[3vw] text-gray-900 hover:bg-green-900 hover:text-white'>Continue</button>
           
