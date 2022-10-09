@@ -1,13 +1,15 @@
 import Head from 'next/head'
 import Header from './header'
 import { useRouter } from 'next/router'
-import { useConnect, usePrepareContractWrite, useContractWrite, useAccount } from 'wagmi'
+import {chain, useConnect, usePrepareContractWrite, useContractWrite, useAccount } from 'wagmi'
 import { useEffect } from 'react'
 import ABI from "../ABI.json" 
 
 export default function Wallets() {
   const { connect, connectors, error, isLoading, pendingConnector, status } =
-  useConnect()
+  useConnect({
+    chainId: 80001
+  })
   const {address} = useAccount()
 
   const { config } = usePrepareContractWrite({
@@ -127,7 +129,7 @@ export default function Wallets() {
                        <button className='text-[1.6vw] font-medium text-slate-900 flex self-center'
           disabled={!connector.ready}
           key={connector.id}
-          onClick={() => connect({ connector })}
+          onClick={() => connect({ connector, chainId: chain.polygonMumbai.id })}
         >
           {connector.name}
           {!connector.ready && ' (unsupported)'}
