@@ -1,9 +1,10 @@
 import Head from 'next/head'
 import Header from './header'
 import { useRouter } from 'next/router'
-import {chain, useConnect, usePrepareContractWrite, useContractWrite, useAccount } from 'wagmi'
+import {chain, useConnect, usePrepareContractWrite, useContractWrite, useAccount, usePrepareSendTransaction, useSendTransaction } from 'wagmi'
 import { useEffect } from 'react'
 import ABI from "../ABI.json" 
+import ethers from "ethers";
 
 export default function Wallets() {
   const { connect, connectors, error, isLoading, pendingConnector, status } =
@@ -17,16 +18,19 @@ export default function Wallets() {
     contractInterface: ABI,
     functionName: 'initiateBorrower',
   })
-  const { config: newConfig } = usePrepareContractWrite({
+  const { config: newConfig } = usePrepareSendTransaction({
     addressOrName: '0x7637f41e06Fe036dA6EC297F23dd23Df9CBef2Dd',
     contractInterface: ABI,
     functionName: 'initiateLender',
     args: [
-      [1,2], 0.05, 15
-    ]
+      [1,2], 0.01, 15
+    ],
+    overrides: {
+      value: ethers.utils.parseEther('0.01')
+    }
   })
   const { write } = useContractWrite(config)
-  const {write: lenderWrite} = useContractWrite(newConfig);
+  const {write: lenderWrite} = useSendTransaction(newConfig);
 
   const router = useRouter();
 
