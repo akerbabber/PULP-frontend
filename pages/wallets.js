@@ -14,7 +14,6 @@ export default function Wallets() {
     addressOrName: '0x7637f41e06Fe036dA6EC297F23dd23Df9CBef2Dd',
     contractInterface: ABI,
     functionName: 'initiateBorrower',
-    // args: [address],
   })
   const { write } = useContractWrite(config)
 
