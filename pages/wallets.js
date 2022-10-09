@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import {chain, useConnect, usePrepareContractWrite, useContractWrite, useAccount, usePrepareSendTransaction, useSendTransaction } from 'wagmi'
 import { useEffect } from 'react'
 import ABI from "../ABI.json" 
-import ethers from "ethers";
+import {ethers} from "ethers";
 
 export default function Wallets() {
   const { connect, connectors, error, isLoading, pendingConnector, status } =
