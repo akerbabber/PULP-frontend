@@ -77,12 +77,12 @@ export default function wallets() {
         </div>
         </div>
       <div className='flex justify-around'>
-      <div className='rounded-[150px]    bg-white w-[78%] h-[28vw] m-auto p-16 '>
+      <div className='rounded-[150px]    bg-white w-[78%] h-[28vw] m-auto p-8 '>
           <div className='text-[1.4vw] font-ProtoMono-Light mb-[2vw] text-gray-900 m-auto w-full'>Finally, sign in with your Ethereum Wallet to save these changes.</div>
               <div id="wallets-container">
               <ul role="list" class="p-6 divide-y divide-slate-200 w-[94%] ml-10">
                 <li class=" first:pt-0 last:pb-0">
-                  <div class="ml-3 flex border-2 border-b-0 p-3 border-gray-600 hover:bg-orange-300 ">
+                  <div class="ml-3 flex border-2 border-b-0 p-3 border-gray-600 hover:bg-yellow-100 ">
                   <div className='bg-white h-[3vw] mb-[0.3vw] w-[11%] text-center' style={{
                       background: 'url(/static/metamask.png) center',
                       backgroundRepeat: 'no-repeat',
@@ -99,7 +99,7 @@ export default function wallets() {
                   </div>
                 </li>
                 <li class=" first:pt-0 last:pb-0">
-                  <div class="ml-3 flex border-l-2 border-r-2 p-3 border-gray-600 hover:bg-orange-300 ">
+                  <div class="ml-3 flex border-l-2 border-r-2 p-3 border-gray-600 hover:bg-yellow-100 ">
                   <div className='bg-white h-[3vw] mb-[0.3vw] w-[11%] text-center' style={{
                       background: 'url(/static/walletconnect.png) center',
                       backgroundRepeat: 'no-repeat',
@@ -116,7 +116,7 @@ export default function wallets() {
                   </div>
                 </li>
                 <li class=" first:pt-0 last:pb-0">
-                  <div class="ml-3 flex border-l-2 border-r-2 border-b-2 p-3 border-gray-600 hover:bg-orange-300 ">
+                  <div class="ml-3 flex border-l-2 border-r-2 border-b-2 p-3 border-gray-600 hover:bg-yellow-100 ">
                   <div className='bg-white h-[3vw] mb-[0.3vw] w-[11%] text-center' style={{
                       background: 'url(/static/coinbase.png) center',
                       backgroundRepeat: 'no-repeat',
