@@ -22,7 +22,7 @@ export default function Wallets() {
     contractInterface: ABI,
     functionName: 'initiateLender',
     args: [
-      [1,2], 100, 15
+      [1,2], 0.05, 15
     ]
   })
   const { write } = useContractWrite(config)
