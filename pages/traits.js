@@ -56,7 +56,6 @@ export default function Traits() {
           </div>
         </div>
         <div className='flex justify-center'>
-        <div className='text-[1.4vw] font-ProtoMono-SemiBold fixed bottom-36 text-green-900    m-auto w-full'>We require you choose AT LEAST two Good Reputation traits to verify.</div>
         <div onClick={() => router.push("/amount")}  className='text-[1.2vw] font-ProtoMono-Light rounded-xl bg-white text-orange-400 p-3 fixed bottom-10 m-auto w-[30%] hover:text-white hover:bg-green-900'>Get Started</div>
         </div>
       </div>
