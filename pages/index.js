@@ -1,8 +1,13 @@
 import Head from 'next/head'
 import Header from './header'
+import { useRouter } from 'next/router'
+
 
 
 export default function Home() {
+
+  const router = useRouter();
+  
   return (
     <div>
       <Head>
@@ -45,7 +50,7 @@ export default function Home() {
           </div>
         </div>
        <div className='flex justify-center'>
-        <div className='text-[1.2vw] font-ProtoMono-Light text-center mt-[7vw] mb-[5vw] rounded-xl bg-white text-orange-400 w-[30%] p-3  hover:text-white hover:bg-green-900 '>Change Your future</div>
+        <div onClick={() => router.push("/traits")}  className='text-[1.2vw] font-ProtoMono-Light text-center mt-[7vw] mb-[5vw] rounded-xl bg-white text-orange-400 w-[30%] p-5  hover:text-white hover:bg-green-900 '>Change Your future</div>
        </div>
       </div>
     </div>

@@ -1,29 +1,51 @@
 import Head from 'next/head'
 import Header from './header'
+import { useRouter } from 'next/router'
 
+export default function Wallets() {
 
-export default function wallets() {
+  const router = useRouter();
+
+  const getProviderOrSigner = async (needSigner = false) => {
+    // Connect to Metamask
+    // Since we store `web3Modal` as a reference, we need to access the `current` value to get access to the underlying object
+    const provider = await web3ModalRef.current.connect();
+    const web3Provider = new providers.Web3Provider(provider);
+
+    // If user is not connected to the Goerli network, let them know and throw an error
+    const { chainId } = await web3Provider.getNetwork();
+    if (chainId !== 5) {
+      window.alert("Change the network to Goerli");
+      throw new Error("Change network to Goerli");
+    }
+
+    if (needSigner) {
+      const signer = web3Provider.getSigner();
+      return signer;
+    }
+    return web3Provider;
+  };
+
+  useEffect(() => {
+    // if wallet is not connected, create a new instance of Web3Modal and connect the MetaMask wallet
+    if (!walletConnected) {
+      // Assign the Web3Modal class to the reference object by setting it's `current` value
+      // The `current` value is persisted throughout as long as this page is open
+      web3ModalRef.current = new Web3Modal({
+        network: "goerli",
+        providerOptions: {},
+        disableInjectedProvider: false,
+      });
+      connectWallet();
+    }
+  }, [walletConnected]);
+
   return (
     <div>
       <Head>
         <title>PULP / Borrowers Platform</title>
       </Head>
-      <div>
-      <div className='flex w-full h-[6vw] bg-white justify-between p-5'>
-        <div className='flex' id="topMenu">
-        <div className='bg-white h-full w-[5vw] mb-10 text-center' style={{
-                  background: 'url(/static/Logo.png) center',
-                  width:'7vw',
-                  backgroundRepeat: 'no-repeat',
-                }}>
-            </div>
-        </div>
-        <div className='flex'>
-          <div className='rounded-xl font-ProtoMono-Light border-orange-400 text-orange-400  border-2 bg-white p-2 flex self-center mr-4'>Log in</div>
-          <div className='rounded-xl font-ProtoMono-Light  bg-orange-400  p-4 flex self-center text-white'>I am a Lender</div>
-        </div>
-      </div>
-    </div>
+      <Header />
       <div className='font-ProtoMono-Light p-[1vw]  text-center w-full h-[52vw] pt-[2vw] flex-col items-center  bg-gradient-to-b from-orange-400 to-yellow-300 text-white'>
         <div className='text-[3vw] font-ProtoMono-SemiBold  text-center mt-[2vw] text-green-900'>
         Change your future in a few simple steps
@@ -136,7 +158,7 @@ export default function wallets() {
             </ul>
               </div>
          
-         <button className='rounded-lg text-[1.2vw] p-4 bg-white border-2 border-green-900 mt-[1vw] text-gray-900 hover:bg-green-900 hover:text-white'>Continue</button>
+         <button onClick={() => router.push("/final")} className='rounded-lg text-[1.2vw] p-4 bg-white border-2 border-green-900 mt-[1vw] text-gray-900 hover:bg-green-900 hover:text-white'>Continue</button>
           
         </div>
       </div>

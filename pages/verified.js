@@ -1,29 +1,18 @@
 import Head from 'next/head'
 import Header from './header'
+import { useRouter } from 'next/router'
 
 
-export default function verified() {
+export default function Verified() {
+
+  const router  = useRouter();
+
   return (
     <div>
       <Head>
         <title>PULP / Borrowers Platform</title>
       </Head>
-      <div>
-      <div className='flex w-full h-[6vw] bg-white justify-between p-5'>
-        <div className='flex' id="topMenu">
-        <div className='bg-white h-full w-[5vw] mb-10 text-center' style={{
-                  background: 'url(/static/Logo.png) center',
-                  width:'7vw',
-                  backgroundRepeat: 'no-repeat',
-                }}>
-            </div>
-        </div>
-        <div className='flex'>
-          <div className='rounded-xl font-ProtoMono-Light border-orange-400 text-orange-400  border-2 bg-white p-2 flex self-center mr-4'>Log in</div>
-          <div className='rounded-xl font-ProtoMono-Light  bg-orange-400  p-4 flex self-center text-white'>I am a Lender</div>
-        </div>
-      </div>
-    </div>
+      <Header />
       <div className='font-ProtoMono-Light p-[1vw]  text-center w-full h-[52vw] pt-[2vw] flex-col items-center  bg-gradient-to-b from-orange-400 to-yellow-300 text-white'>
         <div className='text-[3vw] font-ProtoMono-SemiBold  text-center mt-[2vw] text-green-900'>
         Change your future in a few simple steps
@@ -84,8 +73,8 @@ export default function verified() {
                 <div>
                   <div className='text-[1.2vw] font-ProtoMono-Light  text-gray-900 '>AGE</div>
                   <div className='bg-white h-[8vw] w-[8vw] m-auto' style={{
-                    background: 'url(/static/qr-age.png) center',
-                    backgroundSize: 'cover',
+                    background: 'url(/static/age.jpg) center',
+                    backgroundSize: 'contain',
                     backgroundRepeat: 'no-repeat',
                   }}>
               </div>
@@ -99,8 +88,8 @@ export default function verified() {
                 <div>
                   <div className='text-[1.2vw] font-ProtoMono-Light  text-gray-900 '>DAO Contributor</div>
                   <div className='bg-white h-[8vw] w-[8vw] m-auto' style={{
-                    background: 'url(/static/qr-age.png) center',
-                    backgroundSize: 'cover',
+                    background: 'url(/static/dao.jpg) center',
+                    backgroundSize: 'contain',
                     backgroundRepeat: 'no-repeat',
                   }}>
               </div>
@@ -113,7 +102,7 @@ export default function verified() {
                 </div>
           </div>
           <div className='text-[1.4vw] font-ProtoMono-Light text-orange-600 mt-10 '>Congratulations! You have a Good Reputation.</div>
-          <button className='rounded-lg text-[1.2vw] p-4 bg-white border-2 border-green-900 mt-[1vw] text-gray-900 hover:bg-green-900 hover:text-white'>Continue</button>
+          <button onClick={() => router.push("/wallets")} className='rounded-lg text-[1.2vw] p-4 bg-white border-2 border-green-900 mt-[1vw] text-gray-900 hover:bg-green-900 hover:text-white'>Continue</button>
           
         </div>
       </div>

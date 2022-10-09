@@ -1,8 +1,12 @@
 import Head from 'next/head'
 import Header from './header'
+import { useRouter } from 'next/router'
 
 
 export default function Final() {
+
+  const router = useRouter()
+
   return (
     <div>
       <Head>
@@ -18,7 +22,7 @@ export default function Final() {
         <div className='text-[2vw] font-ProtoMono-Light text-center mt-[4vw]'>Good luck, we believe in you!</div>
        <div className='flex space-x-10 ml-[30%] justify-center border-2 rounded-xl border-gray-900 w-[40%] mt-10'>
         <div className='text-[1.4vw] font-ProtoMono-Light text-center mt-[2vw]'>Need to Borrow more?</div>
-        <div className='text-[1.2vw] font-ProtoMono-Light text-center mt-[2vw] mb-[3vw] rounded-xl bg-white text-orange-400 w-[30%] p-3  hover:text-white hover:bg-green-900 '>Get Started!</div>
+        <div onClick={() => router.push("/")} className='text-[1.2vw] font-ProtoMono-Light text-center mt-[2vw] mb-[3vw] rounded-xl bg-white text-orange-400 w-[30%] p-3  hover:text-white hover:bg-green-900 '>Get Started!</div>
        </div>
       </div>
     </div>
